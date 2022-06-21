@@ -1,0 +1,49 @@
+SELECT *
+FROM `students`
+WHERE YEAR(`stundents`.`date_of_birth`) = 1990;
+
+
+SELECT *
+FROM `courses`
+WHERE `courses`.`cfu` > 10
+ORDER BY `courses`.`cfu` ASC;
+
+
+
+SELECT `students`.`name`, `students`.`surname`,
+`students`.`date_of_birth`,
+FROM `students`
+WHERE TIMESTAMPDIFF(YEAR, `students`.`date_of_birth`, CURDATE()) > 30
+ORDER BY `students`.`date_of_birth` DESC;
+
+
+
+SELECT *
+FROM `courses`
+WHERE `courses`.`year` = 1
+AND `courses`.`period` = 'I semestre'
+ORDER BY `courses`.`year`, `courses`.`period`;
+
+
+SELECT *
+FROM `exams`
+WHERE `exams`.`date` = '2020-06-20'
+AND HOUR(`exams`.`hour`) >= 14
+ORDER BY `exams`.`hour`;
+
+
+
+SELECT *
+FROM `dergess`
+WHERE `dergess`.`level` = 'magistrale';
+
+
+
+SELECT COUNT(*)
+FROM  `departments`;
+
+
+
+SELECT COUNT(*) AS `no_phone_teachers_number`
+FROM `teachers`
+WHERE `teachers`.`phone` IS NULL
