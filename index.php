@@ -1,19 +1,6 @@
 <?php
-define("DB_SEVERNAME", "localhost");
-define("DB_USERNAME", "root");
-define("DB_PASSWORD", "");
-define("DB_NAME", "db-university");
-define("DB_PORT", 3306);
-
-
-$conn = new mysqli(DB_SEVERNAME, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_PORT);
-
-//var_dump($conn);
-
-if( $conn && $conn->connect_error) {
-    echo "Error"; $conn->connect_error;
-    die();
-}
+require_once __DIR__ ."/database.php";
+require_once __DIR__ . "/Department.php";
 
 
 // Query per il db 
@@ -34,7 +21,7 @@ if ($result && $result->num_rows > 0) {
     while ($row =$result->fetch_assoc()) {
         //var_dump($row);
         $curr_department = new Department($row["id"], $row["name"]);
-        $departments[] = $row;
+        $departments[] = $curr_department;
     }
 
     //var_dump($departments);
@@ -69,7 +56,7 @@ if ($result && $result->num_rows > 0) {
 
     <div>
         <h2><?php echo $department->name; ?></h2>
-        <a href="single-department.php?id"=<?php echo $department->id; ?> " Vedi</a>
+        <a href="single-department.php?id"=<?php echo $department->id; ?>"> Vedi informazioni</a>
     </div>
     <?php } ?>
 </body>

@@ -55,16 +55,15 @@ echo "Il dipartimento non è stato trovato";
 
 
 <?php foreach($departments as $department) { ?>
-    <h1><?php echo ?></h1>
-    <p> [head of department] </p>
+    <h1><?php echo $department->name; ?></h1>
+    <p> <?php echo $department->head_of_department; ?> </p>
 
-    <h2>[contatti]</h2>
+    <h2>Contatti</h2>
 
     <ul>
         <?php foreach($department->getContactisArray() as $key => $value) { ?>
-        <li>
-            <?php  echo "$key: $value"  ?>
-        </li>
+            <li> <?php  echo "$key: $value"?> </li>
+        <?php } ?>
     </ul>
 <?php } ?>
 </body>
