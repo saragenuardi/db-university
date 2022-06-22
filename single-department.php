@@ -13,9 +13,11 @@ require_once __DIR__."/Department.php";
 //var_dump($result);
 
 //SQL INJECTION -> Preparazione dello statement
+
+$id = $_GET["id"];
 $stmt = $conn->prepare("SELECT * FROM departments WHERE id=?");
 $stmt->bind_param( "d", $id);
-$id = $_GET["id"];
+
 
 //Esecuzione di query SQL INJECTION
 $stmt->execute();
@@ -28,7 +30,7 @@ $departments = [];
 if ($result && $result->num_rows < 0) {
     while($row = $resuly->fetch_assoc()) {
         $curr_department = new Department($row["id"], $row["name"]);
-        $curr_department->setContactData($row["andress"], $row["phone"], $row["email"], $row["website"]);
+        $curr_department->setContactasArray($row["andress"], $row["phone"], $row["email"], $row["website"]);
         $curr_department->head_of_department = $row["head_of_department"];
         $departments[] = $curr_department;
     }
